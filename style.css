@@ -1,0 +1,237 @@
+body{
+    background-color: rgb(34, 34, 34);
+    margin: 0;
+    overflow: hidden; /*no scroll*/
+    font-family: "Inter", sans-serif;
+}
+#image-track > .image {
+    width: 39vmin;
+    height: 56vmin;
+    object-fit: cover;
+    object-position: 100%, 50%;
+    user-select: none;
+}
+#work{
+    height: 100vh;
+    background-color: transparent;
+}
+#image-track{
+    display: flex;
+    gap: 4vmin;
+    position: absolute; /* postition left and top*/
+    left: 50%;
+    top: 50%; 
+    transform: translate(0%, -50%);
+    animation: fadeInContent 1.5s ease forwards;
+    transition: filter 0.5s ease, opacity 0.5s ease; /* Smooth fade and blur */
+}
+.image{
+    user-select: none;
+    -webkit-user-drag: none;
+    user-drag: none;
+}
+
+/************************************************NAV********************************************************/
+nav {
+    position: fixed; /* Fix the nav bar in place */
+    top: 0; /* Align it to the top of the page */
+    width: 100%; /* Make it span the entire width */
+    background-color: transparent; /* Slight transparency for better visuals */
+    z-index: 1003; /* Ensure it stays above other content */
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+}
+
+nav ul li {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #8d8d8d;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #fcfbf9;
+}
+nav ul li a.active {
+    transition: color 0.3s;
+    color: #fcfbf9;
+}
+/*********************************************************************************/
+
+
+#about {
+    height: 100vh;
+    width: 100vw;
+    color: white;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    z-index: 1002;
+    font-family: "Inter", sans-serif;
+    font-weight: 100;
+}
+#content { 
+    display: flex;
+    height: 95%;
+    flex: 1; /* Take up remaining space */
+}
+
+#photo-Container{
+    background-color: transparent;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#photo{
+    width: 39vmin;
+    height: 56vmin;
+}
+
+#presentation{
+    flex: 1;
+    overflow:auto;
+    padding-bottom: 10%;
+    padding-top: 10%;
+    animation: fadeOut linear;
+    animation-timeline: view();
+    animation-range: exit -200px;
+}
+@keyframes fadeOut{
+    to {opacity: 0;}
+}
+#presentation h1{
+    margin-right: 10%;
+    margin-top: 10%;
+    animation: fadeOut linear;
+    animation-timeline: view();
+    animation-range: exit -300px;
+}
+#presentation h2{
+    margin-left: 5%;
+}
+#presentation p{
+    margin-left: 5%;
+}
+#contact{
+    background-color: transparent;
+    width: 100%;
+    height: 5%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2%;
+}
+
+#presentation::-webkit-scrollbar {
+    width: 0.5vw; /* Adjust width as needed */
+}
+
+#presentation::-webkit-scrollbar-thumb {
+    background-color: white; /* Use background-color instead of scrollbar-color */
+    border-radius: 10px; /* Optional: round edges */
+}
+
+#presentation::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/****************************************************************/
+@keyframes fadeInContent {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(center);
+    }
+}
+
+
+/* General styles for the dynamically created segment */
+.image-segment {
+    position: fixed; /* Ensure it covers the viewport */
+    top: 0; /* Start at the very top */
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Cover the entire viewport */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1001; /* Ensure it sits above #work and #image-track */
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    overflow: hidden;
+    opacity: 1; /* Fully visible by default */
+    transition: opacity 1s ease; /* Smooth fade-out effect */
+    animation: zoomFade 1.5s ease; /* Apply the animation */
+}
+
+/* Dynamically minimized images within the segment */
+.minimized-image {
+    width: 80px; /* Fixed small width */
+    height: 50px; /* Maintain aspect ratio */
+    margin: 3px; /* Space between images */
+    margin-bottom: 15px;
+    cursor: pointer; /* Indicate interactivity */
+    /*----------------------------------------*/
+    position: relative; /* Ensures images stay in place */
+    animation: none !important; /* Prevent any animation from being applied */
+    border: 1px solid #d4d1cd;
+}
+
+@keyframes zoomFade {
+    0% {
+        transform: scale(1.1); /* Slight zoom in */
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1); /* Return to normal */
+        opacity: 1;
+    }
+}
+
+#image-track.blurred {
+    filter: blur(10px); /* Apply the blur effect */
+}
+
+#image-track.hidden {
+    opacity: 0; /* Fully transparent */
+    visibility: hidden; /* Hide from view */
+    pointer-events: none; /* Prevent interaction */
+}
+
+i {
+    font-size: 32px; /* Adjust size */
+    color: white; /* Your brand color */
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+i:hover {
+    color: white; /* Highlight color */
+    transform: scale(1.1);
+}
+
+.headshot{
+    width: 39vmin;
+    height: 56vmin;
+    border-radius: 1%;
+    border-color: black;
+}
